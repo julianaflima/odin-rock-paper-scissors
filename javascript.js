@@ -26,3 +26,25 @@ function getComputerChoice() {
 computerSelection = getComputerChoice();
 
 console.log(computerSelection);
+
+// Variable to store the result from comparison
+let message;
+
+// Compare Player input with computer choice
+function playRound(playerSelection, computerSelection) {
+	// Call function to get computerSelection
+	if (playerSelection === computerSelection) {
+		return message = `It's a tie!`;
+	}
+	else if (playerSelection === 'Rock' && computerSelection === 'Scissor' || playerSelection === 'Scissor' && computerSelection === 'Paper' || playerSelection === 'Paper' && computerSelection === 'Rock') {
+		return message = `You win! ${playerSelection} beats ${computerSelection}`;
+	} else {
+		return message = `You lose! ${computerSelection} beats ${playerSelection}`;
+	}
+}
+
+
+
+playRound('Paper', computerSelection);
+
+console.log(message);
