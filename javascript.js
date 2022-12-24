@@ -27,6 +27,16 @@ computerSelection = getComputerChoice();
 
 console.log(computerSelection);
 
+// Capitalize first letter 
+function capitalizeFirstLetter(string) {
+	let upperFirstLetter = string.slice(0,1).toUpperCase();
+	let stringRemainder = string.slice(1).toLowerCase();
+	return upperFirstLetter + stringRemainder;
+}
+// Get player input
+let playerselection = capitalizeFirstLetter(prompt('Rock, Paper, or Scissor?'));
+
+
 // Variable to store the result from comparison
 let message;
 
@@ -45,6 +55,6 @@ function playRound(playerSelection, computerSelection) {
 
 
 
-playRound('Paper', computerSelection);
+;
 
-console.log(message);
+console.log(playRound(playerselection, computerSelection));
