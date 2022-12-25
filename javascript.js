@@ -4,14 +4,10 @@ function getRandom012() {
 }
 
 
-// Variable to store choice from number from function getComputerChoice
-let computerSelection;
-
-
-// Translate random number to option Rock/Paper/Scissor to get computer input
+// Translate random number to computer play (Rock/Paper/Scissor)
 function getComputerChoice() {
-	// Store random number in a variable
 	let randomNumber = getRandom012();
+	let computerSelection;
 
 	// Assign choice to number
 	if (randomNumber === 0) {
@@ -23,38 +19,64 @@ function getComputerChoice() {
 	}
 }
 
-computerSelection = getComputerChoice();
 
-console.log(computerSelection);
 
 // Capitalize first letter 
 function capitalizeFirstLetter(string) {
-	let upperFirstLetter = string.slice(0,1).toUpperCase();
-	let stringRemainder = string.slice(1).toLowerCase();
-	return upperFirstLetter + stringRemainder;
+	return string.slice(0,1).toUpperCase() + string.slice(1).toLowerCase()
 }
-// Get player input
-let playerselection = capitalizeFirstLetter(prompt('Rock, Paper, or Scissor?'));
 
 
-// Variable to store the result from comparison
+
+
+
 let message;
+let computerScore = playerScore = 0;
 
-// Compare Player input with computer choice
+// Compare user play with computer play
 function playRound(playerSelection, computerSelection) {
-	// Call function to get computerSelection
 	if (playerSelection === computerSelection) {
 		return message = `It's a tie!`;
 	}
 	else if (playerSelection === 'Rock' && computerSelection === 'Scissor' || playerSelection === 'Scissor' && computerSelection === 'Paper' || playerSelection === 'Paper' && computerSelection === 'Rock') {
+		playerScore += 1;
 		return message = `You win! ${playerSelection} beats ${computerSelection}`;
 	} else {
+		computerScore += 1;
 		return message = `You lose! ${computerSelection} beats ${playerSelection}`;
 	}
+	
 }
 
 
 
-;
 
-console.log(playRound(playerselection, computerSelection));
+// Allow 5 rounds and announce the winner
+function game() {
+	for(let i = 1; i < 6; i++) {
+
+		// Ask for user to choose an option
+		let playerSelection = capitalizeFirstLetter(prompt(`Round ${i}: Rock, Paper, or Scissor?`));
+
+		// Randomly generate computer play
+		let computerSelection = getComputerChoice();
+
+		// Get the winner of the round
+		console.log(playRound(playerSelection, computerSelection));
+	}
+
+	// Show final score count
+	console.log(`Player score: ${playerScore}`);
+	console.log(`Computer score: ${computerScore}`);
+
+	//Get the winner of 5 rounds
+	if (computerScore > playerScore) {
+		console.log(`You lost! ${computerScore} vs ${playerScore}`);
+	}	else if (playerScore > computerScore) {
+		console.log(`You won! ${playerScore} vs ${computerScore}`);
+	} else {
+		console.log(`It's a tie! ${computerScore} vs ${playerScore}`);
+	}
+}
+
+game();
